@@ -84,6 +84,8 @@ alias venn='/mnt/c/Users/srp/AppData/Local/Bin/venn.exe'
 
 # Set JAVA_HOME for DbVisualizer
 export INSTALL4J_JAVA_HOME=$HOME/.sdkman/candidates/java/17.0.8.1-tem
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
 
 # Set EDITOR
 export EDITOR=nvim
