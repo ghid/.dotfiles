@@ -35,7 +35,7 @@ newline = true
 
         [blocks.segments.properties]
         fetch_status = true
-        commit_icon = '@'
+        commit_icon = ''
 
 [[blocks]]
 type = 'prompt'
