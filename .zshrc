@@ -28,10 +28,15 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light ohmyzsh/ohmyzsh
 
+# Load completions
+# ssh-agent config
+zstyle :omz:plugins:ssh-agent lazy yes
+zstyle :omz:plugins:ssh-agent quiet yes
+
 # Add snippets
 zinit snippet OMZP::git
+zinit snippet OMZP::ssh-agent
 
-# Load completions
 autoload -Uz compinit && compinit
 
 zinit cdreplay -q
@@ -89,6 +94,16 @@ export LESS=' -R '
 
 # Set EDITOR
 export EDITOR=nvim
+
+# if [ $(ps ax | grep "[s]sh-agent" | wc -l) -eq 0 ] ; then
+#     eval $(ssh-agent) > /dev/null
+#     if [ "$(ssh-add -l)" = "The agent has no identities." ] ; then
+#         # Auto-add ssh keys to your ssh agent
+#         # Example:
+#         # ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
+#     fi
+# fi
+# See: https://www.tomaszmik.us/2020/09/21/auto-start-ssh-agent-zsh/
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
