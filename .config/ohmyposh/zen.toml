@@ -76,6 +76,14 @@ overflow = 'hidden'
         threshold = 5000
         style = 'austin'
 
+    [[blocks.segments]]
+    type = 'time'
+    style = 'plain'
+    foreground = '#f5e0dc'
+    
+    [properties]
+    time_format = '15:04:05'
+
 [[blocks]]
 type = 'prompt'
 alignment = 'left'
