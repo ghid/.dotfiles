@@ -1,0 +1,112 @@
+console_title_template = '{{ .Folder }}'
+version = 3
+final_space = true
+
+[palette]
+  green = '#a6d189'
+  red = '#e78284'
+  surface0 = '#414559'
+  surface1 = '#51576d'
+  surface2 = '#626880'
+  teal = '#81c8be'
+  yellow = '#e5c890'
+
+[secondary_prompt]
+  template = '❯❯ '
+  foreground = 'p:green'
+  background = 'transparent'
+
+[transient_prompt]
+  template = '❯ '
+  background = 'transparent'
+  foreground_templates = ['{{ if gt .Code 0 }}p:red{{ end }}', '{{ if eq .Code 0 }}p:green{{ end }}']
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    style = 'plain'
+    template = '{{ .Icon }}  '
+    foreground = 'p:teal'
+    background = 'transparent'
+    type = 'os'
+
+  [[blocks.segments]]
+    style = 'plain'
+    template = '{{ .Path }}'
+    foreground = 'blue'
+    background = 'transparent'
+    type = 'path'
+
+    [blocks.segments.properties]
+      style = 'full'
+
+  [[blocks.segments]]
+    style = 'plain'
+    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0}}⇡{{ end }}</>'
+    foreground = 'p:surface2'
+    background = 'transparent'
+    type = 'git'
+
+    [blocks.segments.properties]
+      commit_icon = ''
+      fetch_status = true
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    style = 'plain'
+    foreground = '#31b198'
+    type = 'command'
+
+    [blocks.segments.properties]
+      command = 'watson-prompt.sh'
+      shell = 'sh'
+
+  [[blocks.segments]]
+    style = 'plain'
+    template = '  {{ .Full }}'
+    foreground = '#c24f1e'
+    type = 'ocaml'
+
+  [[blocks.segments]]
+    style = 'plain'
+    template = '  {{ .Full }}'
+    foreground = '#7fd5ea'
+    type = 'go'
+
+[[blocks]]
+  type = 'rprompt'
+  overflow = 'hidden'
+
+  [[blocks.segments]]
+    style = 'plain'
+    template = '{{ .FormattedMs }}'
+    foreground = 'p:yellow'
+    background = 'transparent'
+    type = 'executiontime'
+
+    [blocks.segments.properties]
+      style = 'austin'
+      threshold = 5000
+
+  [[blocks.segments]]
+    style = 'plain'
+    foreground = 'p:surface2'
+    type = 'time'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    style = 'plain'
+    template = '❯'
+    background = 'transparent'
+    type = 'text'
+    foreground_templates = ['{{ if gt .Code 0 }}p:red{{ end }}', '{{ if eq .Code 0 }}p:green{{ end }}']
