@@ -852,6 +852,7 @@ require("lazy").setup({
 				integrations = {
 					cmp = true,
 					treesitter = true,
+					notify = true,
 				},
 			})
 			vim.cmd.colorscheme("catppuccin")
