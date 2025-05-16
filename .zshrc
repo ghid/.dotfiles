@@ -29,6 +29,11 @@ zinit light Aloxaf/fzf-tab
 zinit light ohmyzsh/ohmyzsh
 
 # Load completions
+# export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
+# zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
+# source <(carapace _carapace)
+# zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+
 # ssh-agent config
 zstyle :omz:plugins:ssh-agent lazy yes
 zstyle :omz:plugins:ssh-agent quiet yes
@@ -69,7 +74,16 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-# zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Indicate vim mode
+# function zle-line-init zle-keymap-select {
+#     RPS1="${${KEYMAP/vicmd/ }/(main|viins)/}"
+#     RPS2=$RPS1
+#     zle reset-prompt
+# }
+# zle -N zle-line-init
+# zle -N zle-keymap-select
 
 # Aliases
 alias vim=nvim
