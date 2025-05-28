@@ -97,6 +97,7 @@ alias ls='ls --color'
 alias gi='/mnt/c/Users/srp/AppData/Local/Bin/gi.exe'
 alias gu='/mnt/c/Users/srp/AppData/Local/Bin/gu.exe'
 alias venn='/mnt/c/Users/srp/AppData/Local/Bin/venn.exe'
+alias start='watson projects | fzf | xargs -I{} watson start {}'
 
 eval "$(fzf --zsh)"
 
