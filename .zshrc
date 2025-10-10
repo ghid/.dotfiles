@@ -98,6 +98,7 @@ alias gi='/mnt/c/Users/srp/AppData/Local/Bin/gi.exe'
 alias gu='/mnt/c/Users/srp/AppData/Local/Bin/gu.exe'
 alias venn='/mnt/c/Users/srp/AppData/Local/Bin/venn.exe'
 alias start='watson projects | fzf | xargs -I{} watson start {}'
+alias stop='watson stop'
 
 eval "$(fzf --zsh)"
 
