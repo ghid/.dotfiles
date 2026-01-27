@@ -1,5 +1,5 @@
 console_title_template = '{{ .Folder }}'
-version = 3
+version = 4
 final_space = true
 
 [palette]
@@ -27,77 +27,68 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    style = 'plain'
     template = '{{ .Icon }}  '
     foreground = 'p:teal'
     background = 'transparent'
     type = 'os'
+    style = 'plain'
 
   [[blocks.segments]]
-    style = 'plain'
     template = '{{ .Path }}'
     foreground = 'blue'
     background = 'transparent'
     type = 'path'
+    style = 'plain'
 
-    [blocks.segments.properties]
-      style = 'full'
+    [blocks.segments.options]
+      style = 'agnoster_short'
+      home_icon = '~'
+      folder_icon = '..'
 
   [[blocks.segments]]
-    style = 'plain'
     template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0}}⇡{{ end }}</>'
     foreground = 'p:surface2'
     background = 'transparent'
     type = 'git'
-
-    [blocks.segments.properties]
-      commit_icon = ''
-      fetch_status = true
+    style = 'plain'
 
 [[blocks]]
   type = 'prompt'
   alignment = 'right'
 
   [[blocks.segments]]
-    style = 'plain'
+    template = '{{ .Env.POSH_WATSON_PROMPT }}'
     foreground = '#31b198'
-    type = 'command'
-
-    [blocks.segments.properties]
-      command = 'watson-prompt.sh'
-      shell = 'sh'
+    type = 'text'
+    style = 'plain'
 
   [[blocks.segments]]
-    style = 'plain'
     template = '  {{ .Full }}'
     foreground = '#c24f1e'
     type = 'ocaml'
+    style = 'plain'
 
   [[blocks.segments]]
-    style = 'plain'
     template = '  {{ .Full }}'
     foreground = '#7fd5ea'
     type = 'go'
+    style = 'plain'
 
 [[blocks]]
   type = 'rprompt'
   overflow = 'hidden'
 
   [[blocks.segments]]
-    style = 'plain'
     template = '{{ .FormattedMs }}'
     foreground = 'p:yellow'
     background = 'transparent'
     type = 'executiontime'
-
-    [blocks.segments.properties]
-      style = 'austin'
-      threshold = 5000
+    style = 'plain'
 
   [[blocks.segments]]
-    style = 'plain'
     foreground = 'p:surface2'
     type = 'time'
+    style = 'plain'
 
 [[blocks]]
   type = 'prompt'
@@ -105,8 +96,8 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    style = 'plain'
     template = '❯'
     background = 'transparent'
     type = 'text'
+    style = 'plain'
     foreground_templates = ['{{ if gt .Code 0 }}p:red{{ end }}', '{{ if eq .Code 0 }}p:green{{ end }}']

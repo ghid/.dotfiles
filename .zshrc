@@ -49,6 +49,10 @@ zinit cdreplay -q
 # Set prompt
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
+function set_poshcontext() {
+    export POSH_WATSON_PROMPT=$(watson-prompt.sh)
+}
+
 # Keybindings
 bindkey -v
 bindkey '^ ' autosuggest-accept
@@ -99,6 +103,7 @@ alias gu='/mnt/c/Users/srp/AppData/Local/Bin/gu.exe'
 alias venn='/mnt/c/Users/srp/AppData/Local/Bin/venn.exe'
 alias start='watson projects | fzf | xargs -I{} watson start {}'
 alias stop='watson stop'
+alias transb='trans -b -e bing'
 
 eval "$(fzf --zsh)"
 
@@ -129,3 +134,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Add zsh-syntax-highlighting plugin (has to be near the end of .zshrc)
 zinit light zsh-users/zsh-syntax-highlighting
+
+zinit_init() {
+    zinit creinstall ${ZSH}/completions
+}
