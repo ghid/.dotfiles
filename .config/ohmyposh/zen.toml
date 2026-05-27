@@ -17,7 +17,7 @@ final_space = true
   background = 'transparent'
 
 [transient_prompt]
-  template = '❯ '
+  template = '{{ if gt .Code 0 }}({{ .Code }}){{ end }}❯ '
   background = 'transparent'
   foreground_templates = ['{{ if gt .Code 0 }}p:red{{ end }}', '{{ if eq .Code 0 }}p:green{{ end }}']
 
@@ -96,7 +96,7 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    template = '❯'
+    template = '{{ if gt .Code 0}}({{ .Code }}){{ end }}❯'
     background = 'transparent'
     type = 'text'
     style = 'plain'
