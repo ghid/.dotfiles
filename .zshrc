@@ -51,7 +51,7 @@ zinit cdreplay -q
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 function set_poshcontext() {
-    export POSH_WATSON_PROMPT=$(command -v watson-prompt.sh && watson-prompt.sh)
+    export POSH_WATSON_PROMPT=$(command -v watson-prompt &>/dev/null && watson-prompt)
 }
 
 # Keybindings
