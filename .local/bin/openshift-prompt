@@ -1,0 +1,19 @@
+#! /usr/bin/env bash
+
+if oc status &>/dev/null; then
+    ctx="$(oc whoami -c)"
+    ns="${ctx%%/*}"
+    # user="${ctx##*/}"
+    tmp_host="${ctx#*/}"
+    host="${tmp_host%%:*}"
+    alias_host=$(
+    case $host in
+        "api-oscp4-dev-02-viessmann-net")
+            echo "Dev-02";;
+        "api-oscp4-prod-02-viessmann-net")
+            echo "Prod-02";;
+        *)
+            echo "$tmp_host";;
+    esac)
+    echo " 󱄛 $ns/$alias_host"
+fi

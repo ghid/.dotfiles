@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+
+mapfile -t weekday << EOF
+Sunday
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+EOF
+
+dow=$(date +%w)
+
+case $dow in
+    1 | 2 | 3 | 4)
+        til=$(date -d "$1 +9 hours" +%H:%M);;
+    5)
+        til=$(date -d "$1 +8 hours 30 minutes" +%H:%M);;
+esac
+
+printf "It's %s, so you have to work til %sh.\n" "${weekday[dow]}" "$til"

@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+start="$(sed -ne 's/.*"start": \(.*\),/\1/p' ~/.config/watson/state)"
+
+if [[ -n $start ]]; then
+    project="$(sed -ne 's/.*"project": "\(.*\)",/\1/p' ~/.config/watson/state)"
+    printf "󰔛 %s  %s" "$project" "$(date -d @$start +"%H:%M") "
+fi
