@@ -52,6 +52,14 @@ final_space = true
     type = 'git'
     style = 'plain'
 
+  [[blocks.segments]]
+    # template = " 󱃾 {{.Cluster}}{{if .Namespace}} :: {{.Namespace}}{{end}} "
+    template = '{{ .Env.POSH_OPENSHIFT_PROMPT }}'
+    background = 'transparent'
+    foreground = '#99d1db'
+    type = 'kubectl'
+    style = 'plain'
+
 [[blocks]]
   type = 'prompt'
   alignment = 'right'

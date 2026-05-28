@@ -52,6 +52,7 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 function set_poshcontext() {
     export POSH_WATSON_PROMPT=$(command -v watson-prompt &>/dev/null && watson-prompt)
+    export POSH_OPENSHIFT_PROMPT=$(command -v openshift-prompt &>/dev/null && openshift-prompt)
 }
 
 # Keybindings
