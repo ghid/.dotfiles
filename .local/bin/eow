@@ -34,11 +34,11 @@ printf "You've worked already for %sh and %sm.\n" "$worked_h" "$worked_m"
 if [[ "$l_epoch" -lt 0 ]]; then
     todo_h=$(date -d @${o_epoch} +%H --utc)
     todo_m=$(date -d @${o_epoch} +%M --utc)
-    printf "🍺 Wow! You're on overtime for %sh and %sm!\n" "$todo_h" "$todo_m"
+    printf "🍺 Wow! You're already on overtime for %sh and %sm!\n" "$todo_h" "$todo_m"
 elif [[ "$l_epoch" -lt 60 ]]; then
     printf "🎉 Congrats. You're exactly done for today!\n"
 else
     todo_h=$(date -d @${l_epoch} +%H --utc)
     todo_m=$(date -d @${l_epoch} +%M --utc)
-    printf "💦 Sorry, you have to work for another %sh and %sm...\n" "$todo_h" "$todo_m"
+    printf "💦 You have to work for another %sh and %sm...\n" "$todo_h" "$todo_m"
 fi
