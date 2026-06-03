@@ -6,72 +6,19 @@
         {
             "command": 
             {
-                "action": "globalSummon"
-            },
-            "id": "User.globalSummon.51A3D78C"
-        },
-        {
-            "command": 
-            {
-                "action": "copy",
-                "singleLine": false
-            },
-            "id": "User.copy.644BA8F2"
-        },
-        {
-            "command": "paste",
-            "id": "User.paste"
-        },
-        {
-            "command": 
-            {
                 "action": "commandPalette"
             },
             "id": "User.commandPalette.D3F0B923"
-        },
-        {
-            "command": 
-            {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "id": "User.splitPane.A6751878"
-        },
-        {
-            "command": "find",
-            "id": "User.find"
-        },
-        {
-            "command": 
-            {
-                "action": "nextTab"
-            },
-            "id": "User.nextTab.0"
-        },
-        {
-            "command": 
-            {
-                "action": "prevTab"
-            },
-            "id": "User.prevTab.0"
-        },
-        {
-            "command": 
-            {
-                "action": "quakeMode"
-            },
-            "id": "User.quakeMode.F1E129A4"
         }
     ],
+    "centerOnLaunch": true,
     "copyFormatting": "none",
     "copyOnSelect": true,
-    "defaultProfile": "{6e80c98c-533e-4314-8ff6-c4ac22097d94}",
-    "firstWindowPreference": "defaultProfile",
+    "defaultProfile": "{a38ce4e1-f8b8-428b-8b92-b8053d9cf36f}",
     "keybindings": 
     [
         {
-            "id": "User.prevTab.0",
+            "id": "Terminal.PrevTab",
             "keys": "alt+p"
         },
         {
@@ -79,52 +26,28 @@
             "keys": "ctrl+shift+tab"
         },
         {
-            "id": "User.copy.644BA8F2",
-            "keys": "ctrl+c"
-        },
-        {
-            "id": "User.find",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "id": "User.paste",
-            "keys": "ctrl+v"
-        },
-        {
-            "id": null,
-            "keys": "alt+b"
-        },
-        {
-            "id": "User.commandPalette.D3F0B923",
-            "keys": "ctrl+b"
-        },
-        {
-            "id": "User.splitPane.A6751878",
-            "keys": "alt+shift+d"
-        },
-        {
-            "id": "User.nextTab.0",
-            "keys": "alt+n"
-        },
-        {
             "id": null,
             "keys": "ctrl+tab"
         },
         {
-            "id": null,
-            "keys": "ctrl+shift+comma"
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
         },
         {
-            "id": null,
-            "keys": "win+sc(41)"
+            "id": "Terminal.PasteFromClipboard",
+            "keys": "ctrl+v"
         },
         {
-            "id": "User.globalSummon.51A3D78C",
-            "keys": "alt+shift+comma"
+            "id": "Terminal.NextTab",
+            "keys": "alt+n"
         },
         {
-            "id": null,
-            "keys": "alt+enter"
+            "id": "Terminal.DuplicatePaneAuto",
+            "keys": "alt+shift+d"
+        },
+        {
+            "id": "User.commandPalette.D3F0B923",
+            "keys": "ctrl+b"
         }
     ],
     "language": "en-US",
@@ -137,7 +60,10 @@
     ],
     "profiles": 
     {
-        "defaults": {},
+        "defaults": 
+        {
+            "colorScheme": "Catppuccin Frappe"
+        },
         "list": 
         [
             {
@@ -154,87 +80,51 @@
             },
             {
                 "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": true,
+                "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "adjustIndistinguishableColors": "never",
-                "antialiasingMode": "cleartype",
-                "colorScheme": "Catppuccin Frappe",
-                "commandline": "ubuntu2204.exe",
-                "cursorShape": "filledBox",
-                "experimental.retroTerminalEffect": false,
                 "font": 
                 {
-                    "face": "IosevkaTerm Nerd Font",
-                    "features": 
-                    {
-                        "calt": 1
-                    },
-                    "size": 16,
-                    "weight": "light"
+                    "face": "Cascadia Code",
+                    "size": 13
                 },
-                "guid": "{f9486555-4dd2-47a9-a8f2-81c629f2c316}",
-                "hidden": false,
-                "icon": "https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png",
-                "intenseTextStyle": "bright",
-                "name": "Ubuntu 22.04 LTS",
-                "opacity": 100,
-                "padding": "6"
-            },
-            {
-                "guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
+                "guid": "{234d5115-bc9b-565c-b03f-10577d0963d7}",
                 "hidden": true,
-                "name": "Ubuntu-22.04",
-                "source": "Windows.Terminal.Wsl"
+                "name": "Ubuntu-26.04",
+                "source": "Microsoft.WSL"
             },
             {
-                "font": 
-                {
-                    "features": {}
-                },
-                "guid": "{4ff56d04-d9cf-57ea-bae2-ad396374e7e3}",
-                "hidden": true,
-                "name": "Ubuntu 22.04.5 LTS",
-                "source": "CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc"
-            },
-            {
-                "guid": "{e636fd95-8db6-56fc-969f-5647553fa92b}",
-                "hidden": true,
-                "name": "wsl-vpnkit",
-                "source": "Windows.Terminal.Wsl"
-            },
-            {
-                "adjustIndistinguishableColors": "never",
-                "antialiasingMode": "cleartype",
+                "bellStyle": "none",
                 "colorScheme": "Catppuccin Frappe",
-                "commandline": "ubuntu2204.exe",
+                "commandline": "C:\\WINDOWS\\system32\\wsl.exe --distribution-id {74cfcc3c-d9a5-44d8-bec4-a1d1d4d54bea}",
                 "cursorShape": "filledBox",
-                "experimental.retroTerminalEffect": false,
                 "font": 
                 {
+                    "builtinGlyphs": false,
                     "face": "JuliaMono Nerd Font",
                     "features": 
                     {
-                        "calt": 1,
+                        "cv01": 1,
+                        "cv04": 1,
                         "ss01": 1,
-                        "ss04": 1,
-                        "ss08": 1,
-                        "ss10": 1,
-                        "ss16": 1,
+                        "ss03": 1,
                         "zero": 1
                     },
-                    "size": 16,
-                    "weight": "light"
+                    "size": 15,
+                    "weight": "medium"
                 },
-                "guid": "{6e80c98c-533e-4314-8ff6-c4ac22097d94}",
+                "foreground": null,
+                "guid": "{a38ce4e1-f8b8-428b-8b92-b8053d9cf36f}",
                 "hidden": false,
-                "icon": "https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png",
-                "intenseTextStyle": "bright",
-                "name": "Ubuntu 22.04 LTS JuliaMono",
-                "opacity": 100,
-                "padding": "6"
+                "icon": "\ud83d\udd38",
+                "intenseTextStyle": "all",
+                "name": "Ubuntu-26.04 JuliaMono",
+                "padding": "8",
+                "pathTranslationStyle": "wsl",
+                "startingDirectory": "~",
+                "suppressApplicationTitle": false
             }
         ]
     },
@@ -291,6 +181,6 @@
                 "useMica": false
             }
         }
-    ],
-    "windowingBehavior": "useExisting"
+    ]
 }
+
