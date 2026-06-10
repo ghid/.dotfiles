@@ -34,6 +34,7 @@ zinit light ohmyzsh/ohmyzsh
 # source <(carapace _carapace)
 # zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 source <(oc completion zsh)
+source <(git-lfs completion zsh)
 
 # ssh-agent config
 zstyle :omz:plugins:ssh-agent lazy yes
@@ -81,6 +82,33 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+# Support colors in less
+export LESS_TERMCAP_md=$(tput bold; tput setaf 1)
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_se=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+export LESS_TERMCAP_ue=$(tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 2)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+export LESS_TERMCAP_ZN=$(tput ssubm)
+export LESS_TERMCAP_ZV=$(tput rsubm)
+export LESS_TERMCAP_ZO=$(tput ssupm)
+export LESS_TERMCAP_ZW=$(tput rsupm)
+
+man() {
+    local manpage
+    manpage=$(/usr/bin/man -w "${1:-1}" "$2" 2>/dev/null)
+
+    if [ -z "$manpage" ]; then
+        echo "man: No entry for $2($1)" >&2
+        return 1
+    fi
+
+    mandoc "$manpage" | less
+}
+
 
 # Indicate vim mode
 # function zle-line-init zle-keymap-select {
