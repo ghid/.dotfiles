@@ -679,23 +679,26 @@ require("lazy").setup({
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local lint = require("lint")
-			-- Define Linter for different file types
+
+			-- Linter-Konfiguration für verschiedene Dateitypen
 			lint.linters_by_ft = {
-				-- Use shellcheck for shell scripts
 				sh = { "shellcheck" },
 				bash = { "shellcheck" },
-				-- Add more ...
+				zsh = { "shellcheck" },
 			}
-			vim.api.nvim_create_autocmd({ "BufWritePost", "BufEnter" }, {
-				group = vim.api.nvim_create_augroup("NvimLintTrigger", { clear = true }),
+
+			-- Optional: Shellcheck-Optionen konfigurieren
+			lint.linters.shellcheck.args = {
+				"--severity=warning",
+				"--format=gcc",
+			}
+
+			-- Auto-Linting beim Speichern und beim Tippen
+			vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost" }, {
 				callback = function()
-					local ft = vim.bo.filetype
-					if lint.linters_by_ft[ft] then
-						require("lint").try_lint()
-					end
+					lint.try_lint()
 				end,
 			})
-
 			lint.linters.shellcheck = {
 				cmd = "shellcheck",
 				stdin = true,
