@@ -46,11 +46,20 @@ final_space = true
       folder_icon = '..'
 
   [[blocks.segments]]
-    template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0}}⇡{{ end }}</>'
+    template = " {{ .UpstreamIcon }} {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }}"
     foreground = 'p:surface2'
     background = 'transparent'
     type = 'git'
     style = 'plain'
+    
+    [blocks.segments.options]
+    fetch_status = true
+    fetch_upstream_icon = true
+    source = "cli"
+
+    [blocks.segments.options.mapped_branches]
+    "bug/*" = "🪲 "
+    "feat/*" = "🚀 "
 
   [[blocks.segments]]
     # template = " 󱃾 {{.Cluster}}{{if .Namespace}} :: {{.Namespace}}{{end}} "
