@@ -14,6 +14,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$HOME/go/bin:$PATH
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/age
 
 # Shell integrations
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -35,6 +36,7 @@ zinit light ohmyzsh/ohmyzsh
 # zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
 source <(oc completion zsh)
 source <(git-lfs completion zsh)
+source <(sops completion zsh)
 
 # ssh-agent config
 zstyle :omz:plugins:ssh-agent lazy yes
@@ -84,12 +86,12 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Support colors in less
-export LESS_TERMCAP_md=$(tput bold; tput setaf 1)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 4)
 export LESS_TERMCAP_me=$(tput sgr0)
 export LESS_TERMCAP_se=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 0; tput setab 4)
 export LESS_TERMCAP_ue=$(tput sgr0)
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 2)
+export LESS_TERMCAP_us=$(tput smul; tput setaf 3)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 export LESS_TERMCAP_ZN=$(tput ssubm)
@@ -134,6 +136,7 @@ alias venn='/mnt/c/Users/srp/AppData/Local/Bin/venn.exe'
 alias start='watson projects | fzf | xargs -I{} watson start {}'
 alias stop='watson stop'
 alias transb='trans -b -e bing'
+alias dbw='dune build --watch'
 
 eval "$(fzf --zsh)"
 
