@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+backup_fname="watson-$(date +%w-%a).zip"
+zip "/tmp/$backup_fname" ~/.config/watson/*
+mv "/tmp/$backup_fname" '/mnt/c/Users/SchreiKl/OneDrive/'
+test -a "/mnt/c/Users/SchreiKl/OneDrive/$backup_fname"
