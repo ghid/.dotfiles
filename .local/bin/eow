@@ -19,21 +19,21 @@ case $dow in
         til=$(date -d "$1 +8 hours 30 minutes" +%H:%M);;
 esac
 
-s_epoch=$(date -d "$1" +%s)
-n_epoch=$(date +%s --utc)
-e_epoch=$(date -d "$til" +%s)
-d_epoch=$((n_epoch - s_epoch))
-l_epoch=$((e_epoch - n_epoch + 60))
-o_epoch=$(( -1 * (e_epoch - n_epoch) ))
+s_epoch=$(date -d "$1" +%s) # start time as epoch
+n_epoch=$(date +%s) # 'now' as epoch
+e_epoch=$(date -d "$til" +%s) # end time as epoch
+d_epoch=$((n_epoch - s_epoch)) # duration worked so far as epoch
+l_epoch=$((e_epoch - n_epoch + 60)) # time still to work as epoch (including a 60 min break)
+todo_secs=$((e_epoch - n_epoch)) # time to work in seconds
 worked_h=$(date -d @${d_epoch} +%H --utc)
 worked_m=$(date -d @${d_epoch} +%M --utc)
-
 
 printf "It's %s, so you have to work til %sh.\n" "${weekday[dow]}" "$til"
 printf "You've worked already for %sh and %sm.\n" "$worked_h" "$worked_m"
 if [[ "$l_epoch" -lt 0 ]]; then
-    todo_h=$(date -d @${o_epoch} +%H --utc)
-    todo_m=$(date -d @${o_epoch} +%M --utc)
+    todo_secs=$((todo_secs * -1))
+    todo_h=$(date -d @${todo_secs} +%H --utc)
+    todo_m=$(date -d @${todo_secs} +%M --utc)
     printf "🍺 Wow! You're already on overtime for %sh and %sm!\n" "$todo_h" "$todo_m"
 elif [[ "$l_epoch" -lt 60 ]]; then
     printf "🎉 Congrats. You're exactly done for today!\n"
