@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 # Set the directory to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -17,6 +19,7 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/age
 
 # Shell integrations
+# shellcheck source=/home/srp/.fzf.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # eval "$(zoxide init --cmd cd zsh)"
 
@@ -34,8 +37,12 @@ zinit light ohmyzsh/ohmyzsh
 # zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 # source <(carapace _carapace)
 # zstyle ':completion:*:git:*' group-order 'main commands' 'alias commands' 'external commands'
+
+# shellcheck disable=SC1090
 source <(oc completion zsh)
+# shellcheck disable=SC1090
 source <(git-lfs completion zsh)
+# shellcheck disable=SC1090
 source <(sops completion zsh)
 
 # ssh-agent config
@@ -54,8 +61,9 @@ zinit cdreplay -q
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 
 function set_poshcontext() {
-    export POSH_WATSON_PROMPT=$(command -v watson-prompt &>/dev/null && watson-prompt)
-    export POSH_OPENSHIFT_PROMPT=$(command -v openshift-prompt &>/dev/null && openshift-prompt)
+    POSH_WATSON_PROMPT=$(command -v watson-prompt &>/dev/null && watson-prompt)
+    POSH_OPENSHIFT_PROMPT=$(command -v openshift-prompt &>/dev/null && openshift-prompt)
+    export POSH_WATSON_PROMPT POSH_OPENSHIFT_PROMPT
 }
 
 # Keybindings
@@ -80,24 +88,28 @@ setopt hist_find_no_dups
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+# shellcheck disable=SC2296
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Support colors in less
-export LESS_TERMCAP_md=$(tput bold; tput setaf 4)
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_se=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 0; tput setab 4)
-export LESS_TERMCAP_ue=$(tput sgr0)
-export LESS_TERMCAP_us=$(tput smul; tput setaf 3)
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_mh=$(tput dim)
-export LESS_TERMCAP_ZN=$(tput ssubm)
-export LESS_TERMCAP_ZV=$(tput rsubm)
-export LESS_TERMCAP_ZO=$(tput ssupm)
-export LESS_TERMCAP_ZW=$(tput rsupm)
+LESS_TERMCAP_md=$(tput bold)
+LESS_TERMCAP_me=$(tput sgr0)
+LESS_TERMCAP_se=$(tput sgr0)
+LESS_TERMCAP_so=$(tput bold; tput setaf 0; tput setab 4)
+LESS_TERMCAP_ue=$(tput sgr0)
+LESS_TERMCAP_us=$(tput smul; tput setaf 4)
+LESS_TERMCAP_mr=$(tput rev)
+LESS_TERMCAP_mh=$(tput dim)
+LESS_TERMCAP_ZN=$(tput ssubm)
+LESS_TERMCAP_ZV=$(tput rsubm)
+LESS_TERMCAP_ZO=$(tput ssupm)
+LESS_TERMCAP_ZW=$(tput rsupm)
+export LESS_TERMCAP_md LESS_TERMCAP_me LESS_TERMCAP_se LESS_TERMCAP_so LESS_TERMCAP_ue \
+       LESS_TERMCAP_us LESS_TERMCAP_mr LESS_TERMCAP_mh LESS_TERMCAP_ZN LESS_TERMCAP_ZV \
+       LESS_TERMCAP_ZO LESS_TERMCAP_ZW
 
 man() {
     local manpage
@@ -123,19 +135,20 @@ man() {
 
 # Aliases
 alias vim=nvim
-alias wt=$(which wt.exe)
-alias wsl=$(which wsl.exe)
-alias clip=$(which clip.exe)
+alias wt='$(which wt.exe)'
+alias wsl='$(which wsl.exe)'
+alias clip='$(which clip.exe)'
 alias l='ls-go -Nant'
 alias ll='ls-go -Nantl'
-alias mdcd='() { md -p $1 && cd $_ }'
 alias ls='ls --color'
 alias gi='/mnt/c/Users/srp/AppData/Local/Bin/gi.exe'
 alias gu='/mnt/c/Users/srp/AppData/Local/Bin/gu.exe'
 alias venn='/mnt/c/Users/srp/AppData/Local/Bin/venn.exe'
-alias start='watson projects | fzf | xargs -I{} watson start {}'
+alias start='bookpanic --projects -2 | fzf | xargs -I{} watson start {}'
 alias stop='watson stop'
 alias transb='trans -b -e bing'
+alias trde='trans -b -e bing :de'
+alias tren='trans -b -e bing de:en'
 alias dbw='dune build --watch'
 
 eval "$(fzf --zsh)"
@@ -171,3 +184,5 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit_init() {
     zinit creinstall ${ZSH}/completions
 }
+
+if [ -e /home/srp/.nix-profile/etc/profile.d/nix.sh ]; then . /home/srp/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
