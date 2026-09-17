@@ -10,6 +10,7 @@ final_space = true
   surface2 = '#626880'
   teal = '#81c8be'
   yellow = '#e5c890'
+  orange = '#fab387'
 
 [secondary_prompt]
   template = '❯❯ '
@@ -58,8 +59,10 @@ final_space = true
     source = "cli"
 
     [blocks.segments.options.mapped_branches]
-    "bug/*" = "🪲 "
-    "feat/*" = "🚀 "
+    "bugfix/*" = "🪲 "
+    "feature/*" = "🧩 "
+    "hotfix/*" = "🔥 "
+    "release/*" = "🚀 "
 
   [[blocks.segments]]
     # template = " 󱃾 {{.Cluster}}{{if .Namespace}} :: {{.Namespace}}{{end}} "
@@ -80,13 +83,13 @@ final_space = true
     style = 'plain'
 
   [[blocks.segments]]
-    template = '  {{ .Full }}'
+    template = '  {{ .Full }} '
     foreground = '#c24f1e'
     type = 'ocaml'
     style = 'plain'
 
   [[blocks.segments]]
-    template = '  {{ .Full }}'
+    template = '  {{ .Full }} '
     foreground = '#7fd5ea'
     type = 'go'
     style = 'plain'
@@ -97,7 +100,7 @@ final_space = true
 
   [[blocks.segments]]
     template = '{{ .FormattedMs }}'
-    foreground = 'p:yellow'
+    foreground = 'p:orange'
     background = 'transparent'
     type = 'executiontime'
     style = 'plain'
