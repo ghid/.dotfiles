@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+weather=$(curl -s 'wttr.is/bromskirchen?format=1')
+echo $weather

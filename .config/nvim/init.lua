@@ -164,12 +164,16 @@ vim.opt.inccommand = "split"
 vim.opt.scrolloff = 10
 
 vim.opt.guicursor = ""
+vim.opt.termguicolors = true
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+vim.opt.winborder = "rounded"
+
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
@@ -909,11 +913,12 @@ require("lazy").setup({
 		priority = 1000,
 		init = function()
 			require("catppuccin").setup({
-				flavour = "frappe",
+				flavour = "mocha",
 				background = {
 					light = "latte",
 					dark = "mocha",
 				},
+				term_colors = true,
 				transparent_background = false,
 				no_italic = false,
 				no_bold = false,
@@ -923,6 +928,18 @@ require("lazy").setup({
 					-- properties = { 'italic' },
 					-- variables = { 'italic' },
 				},
+				-- color_overrides = {
+				-- 	all = {
+				-- 		base = "#212529",
+				-- 		text = "#DEE2E6",
+				-- 		yellow = "#FFC107",
+				-- 		red = "#DC3545",
+				-- 		green = "#198754",
+				-- 		blue = "#0D6EFD",
+				-- 		mauve = "#6F42C1",
+				-- 		teal = "#0DCAF0",
+				-- 	},
+				-- },
 				default_integrations = true,
 				integrations = {
 					cmp = true,
@@ -933,23 +950,62 @@ require("lazy").setup({
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
-
-	{
-		"rose-pine/neovim",
-		priority = 1000,
-		init = function()
-			require("rose-pine").setup({
-				variant = "moon",
-				extend_background_behind_borders = true,
-				styles = {
-					bold = true,
-					italic = true,
-					transparency = false,
-				},
-			})
-			--vim.cmd.colorscheme 'rose-pine'
-		end,
-	},
+	--
+	--	{
+	--		"rose-pine/neovim",
+	--		priority = 1000,
+	--		init = function()
+	--			require("rose-pine").setup({
+	--				variant = "moon",
+	--				extend_background_behind_borders = true,
+	--				styles = {
+	--					bold = true,
+	--					italic = true,
+	--					transparency = false,
+	--				},
+	--			})
+	--			--vim.cmd.colorscheme 'rose-pine'
+	--		end,
+	--	},
+	--
+	--	{
+	--		"navarasu/onedark.nvim",
+	--		lazy = false,
+	--		priority = 1000,
+	--		config = function()
+	--			require("onedark").setup({
+	--				style = "dark",
+	--				colors = {
+	--					bg0 = "#212529", -- Haupt-Hintergrund
+	--					bg1 = "#252a2f",
+	--					bg2 = "#2b3035",
+	--					bg3 = "#32373c",
+	--					bg_d = "#181c20",
+	--
+	--					-- wichtig für sichtbare Selektion
+	--					sel0 = "#3a4148",
+	--					sel1 = "#4a525a",
+	--				},
+	--				-- Change code style ---
+	--				-- Options are italic, bold, underline, none
+	--				-- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
+	--				code_style = {
+	--					comments = "italic",
+	--					keywords = "bold",
+	--					functions = "italic",
+	--					strings = "none",
+	--					variables = "none",
+	--				},
+	--				-- Plugins Config --
+	--				diagnostics = {
+	--					darker = true, -- darker colors for diagnostic
+	--					undercurl = true, -- use undercurl instead of underline for diagnostics
+	--					background = true, -- use background color for virtual text
+	--				},
+	--			})
+	--			require("onedark").load()
+	--		end,
+	--	},
 
 	-- Highlight todo, notes, etc in comments
 	{
@@ -1199,6 +1255,6 @@ require("lazy").setup({
 		},
 	},
 })
-
+--
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

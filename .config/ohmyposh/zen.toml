@@ -76,6 +76,11 @@ final_space = true
   type = 'prompt'
   alignment = 'right'
 
+  # [[blocks.segments]]
+  #   template = '{{ .Env.POSH_WTTR_PROMPT }} '
+  #   type = 'text'
+  #   style = 'plain'
+
   [[blocks.segments]]
     template = '{{ .Env.POSH_WATSON_PROMPT }}'
     foreground = '#31b198'
