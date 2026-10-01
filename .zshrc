@@ -63,6 +63,7 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
 function set_poshcontext() {
     POSH_WATSON_PROMPT=$(command -v watson-prompt &>/dev/null && watson-prompt)
     POSH_OPENSHIFT_PROMPT=$(command -v openshift-prompt &>/dev/null && openshift-prompt)
+    # POSH_WTTR_PROMPT=$(command -v wttr-prompt &>/dev/null && wttr-prompt)
     export POSH_WATSON_PROMPT POSH_OPENSHIFT_PROMPT
 }
 
@@ -144,7 +145,7 @@ alias ls='ls --color'
 alias gi='/mnt/c/Users/srp/AppData/Local/Bin/gi.exe'
 alias gu='/mnt/c/Users/srp/AppData/Local/Bin/gu.exe'
 alias venn='/mnt/c/Users/srp/AppData/Local/Bin/venn.exe'
-alias start='bookpanic --projects -2 | fzf | xargs -I{} watson start {}'
+alias start='bookpanic --projects -fzf | fzf | xargs -I{} bash -c "watson start {}"'
 alias stop='watson stop'
 alias transb='trans -b -e bing'
 alias trde='trans -b -e bing :de'
